@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome to philipanda's server!</title>
+    <link rel="stylesheet" type="text/css" href="styles/midnight-green.css">
+  </head>
+
+  <body>
+    <h1>Welcome to philipanda's server!</h1>
+    <nav>
+        <header><a href="/">Home</a></header>
+        <header><a href="wallOfShame">Wall of Shame</a></header> 
+    </nav>
+
+    <section>
+      <table>
+        <tr><th colspan="4">Wall of Shame</th></tr>
+        <tr><th>User</th><th>Method</th><th>IP</th><th>Time</th></tr>
+        {{range .WallOfShame}}
+          <tr>
+            <td>{{.User}}</td>
+            <td>{{.Method}}</td>
+            <td>{{.Ip}}</td>
+            <td>{{.Time}}</td>
+          </tr>
+        {{end}}
+      </table>
+    </section>
+
+  </body>
+</html>

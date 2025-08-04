@@ -6,6 +6,8 @@ import (
 	"os"
 )
 
+var RootDirectory string;
+
 func CheckErrPanic(e error) {
 	if e != nil {
 		logging.Fatal(e)
@@ -28,8 +30,12 @@ func LogFatal(v... any) {
 	logging.Fatal(v...)
 }
 
+func GetStaticFilesPath() string {
+	return RootDirectory + "/static";
+}
+
 func GetTemplatePath(filename string) string {
-	return AppRootDirectory + "static/templates/" + filename;
+	return GetStaticFilesPath() + "/templates/" + filename;
 }
 func GetTemplate(filename string) *template.Template{
 	file, err := os.ReadFile(GetTemplatePath(filename))
@@ -40,7 +46,7 @@ func GetTemplate(filename string) *template.Template{
 }
 
 func GetDataPath(filename string) string {
-	return AppRootDirectory + "static/data/" + filename;
+	return GetStaticFilesPath() + "/data/" + filename;
 }
 func GetData(filename string) []byte {
 	file, err := os.ReadFile(GetDataPath(filename))

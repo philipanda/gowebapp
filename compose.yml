@@ -1,0 +1,8 @@
+services:
+  gowebapp:
+    build: .
+    container_name: gowebapp
+    image: gowebapp
+    ports:
+      - "80:80"
+    restart: always
