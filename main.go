@@ -7,7 +7,15 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"time"
 )
+
+func wrap(h http.Handler) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		guestbook.RegisterGuest(guestbook.GuestbookRecord{Ip: r.Header.Get("X-Forwarded-For"), Time: time.Now().Format(time.ANSIC), Uri: r.RequestURI, Useragent: r.Header.Get("User-Agent")})
+		h.ServeHTTP(w, r) // call the wrapped handler
+	}
+}
 
 func main() {
 	ex, _ := os.Executable()
@@ -32,6 +40,6 @@ func main() {
 
 	util.Log("Endpoints configured")
 	util.Log("All set!")
-	util.LogFatal(http.ListenAndServe(":80", nil))
+	util.LogFatal(http.ListenAndServe(":80", wrap(http.DefaultServeMux)))
 	//logFatal(http.ListenAndServeTLS(":9990", "/etc/letsencrypt/live/philipanda.top/fullchain.pem", "/etc/letsencrypt/live/philipanda.top/privkey.pem", nil))
 }

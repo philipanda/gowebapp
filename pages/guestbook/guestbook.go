@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"os"
 	"strings"
-	"time"
 )
 
 type GuestbookRecord struct {
@@ -53,7 +52,6 @@ func Page(w http.ResponseWriter, r *http.Request) {
 		Guestbook: records,
 	}
 	util.Log(r.Header)
-	RegisterGuest(GuestbookRecord{Ip: r.Header.Get("X-Forwarded-For"), Time: time.Now().Format(time.ANSIC), Uri: r.RequestURI, Useragent: r.Header.Get("User-Agent")})
 	err := tpl.Execute(w, data)
 	util.CheckErrPanic(err)
 }
