@@ -1,0 +1,16 @@
+{{define "content"}}
+    <section>
+      <table>
+        <tr><th colspan="4">Guestbook</th></tr>
+        <tr><th>IP</th><th>URI</th><th>Time</th><th>User Agent</th></tr>
+        {{range .Guestbook}}
+          <tr>
+            <td>{{.Ip}}</td>
+            <td>{{.Uri}}</td>
+            <td>{{.Time}}</td>
+            <td>{{.Useragent}}</td>
+          </tr>
+        {{end}}
+      </table>
+    </section>
+{{end}}

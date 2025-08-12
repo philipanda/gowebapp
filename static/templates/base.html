@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome to philipanda's server!</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" href="styles/classless.css">
+  </head>
+
+  <body>
+    <h1>Welcome to philipanda's server!</h1>
+    <nav style="display: flex; flex-direction: row;">
+        <header><a href="/">Home</a></header>
+        <header><a href="./yunohost">Apps</a></header>
+        <header><a href="./guestbook">Guestbook</a></header>
+    </nav>
+
+    <main style="width: fit-content">
+      {{template "content" .}}
+    </main>
+
+  </body>
+</html>
