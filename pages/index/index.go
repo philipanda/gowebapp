@@ -1,16 +1,14 @@
 package index
 
 import (
-	"net/http"
 	"GoWebApp/util"
+	"net/http"
 )
-
 
 func Page(w http.ResponseWriter, r *http.Request) {
 	tpl := util.GetTemplate("index.html")
 	data := struct {
-	  }{
-	  }
-	
+	}{}
+
 	util.CheckErrLog(tpl.Execute(w, data))
 }

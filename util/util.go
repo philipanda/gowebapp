@@ -6,47 +6,43 @@ import (
 	"os"
 )
 
-var RootDirectory string;
+var RootDirectory string
 
 func CheckErrPanic(e error) {
 	if e != nil {
 		logging.Fatal(e)
 	}
 }
-  
-func CheckErrLog(e error) bool{
+
+func CheckErrLog(e error) bool {
 	if e != nil {
 		logging.Println(e)
-		return true;
+		return true
 	}
-	return false;
+	return false
 }
 
-func Log(v... any) {
+func Log(v ...any) {
 	logging.Println(v...)
 }
 
-func LogFatal(v... any) {
+func LogFatal(v ...any) {
 	logging.Fatal(v...)
 }
 
 func GetStaticFilesPath() string {
-	return RootDirectory + "/static";
+	return RootDirectory + "/static"
 }
 
 func GetTemplatePath(filename string) string {
-	return GetStaticFilesPath() + "/templates/" + filename;
+	return GetStaticFilesPath() + "/templates/" + filename
 }
-func GetTemplate(filename string) *template.Template{
-	file, err := os.ReadFile(GetTemplatePath(filename))
-	CheckErrLog(err)
-	tpl, err := template.New(filename).Parse(string(file))
-	CheckErrLog(err)
-	return tpl
+func GetTemplate(filename string) *template.Template {
+	return template.Must(template.ParseFiles(GetTemplatePath("base.html"), GetTemplatePath(filename)))
 }
 
 func GetDataPath(filename string) string {
-	return GetStaticFilesPath() + "/data/" + filename;
+	return GetStaticFilesPath() + "/data/" + filename
 }
 func GetData(filename string) []byte {
 	file, err := os.ReadFile(GetDataPath(filename))
