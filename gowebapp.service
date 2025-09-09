@@ -1,0 +1,16 @@
+[Unit]
+Description=gowebapp
+Requires=docker.service
+After=docker.service
+
+[Service]
+User=root
+ExecStartPre=/usr/bin/rm -rf /root/gowebapp
+ExecStartPre=/usr/bin/git clone https://github.com/philipanda/gowebapp /root/gowebapp
+ExecStartPre=/usr/bin/docker build /root/gowebapp
+ExecStart=/usr/bin/docker-compose -f /root/gowebapp/compose.yml up
+ExecStop=/usr/bin/docker-compose -f /root/gowebapp/compose.yml down
+Restart=never
+
+[Install]
+WantedBy=multi-user.target
