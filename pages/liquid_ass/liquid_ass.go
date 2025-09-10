@@ -6,7 +6,7 @@ import (
 )
 
 func Page(w http.ResponseWriter, r *http.Request) {
-	tpl := util.GetTemplate("liquid_ass.gohtml")
+	tpl := util.GetTemplate("liquid_ass.go.html")
 	cookie, err := r.Cookie("secret")
 
 	data := struct {

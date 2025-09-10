@@ -6,7 +6,7 @@ import (
 )
 
 func Page(w http.ResponseWriter, r *http.Request) {
-	tpl := util.GetTemplate("index.gohtml")
+	tpl := util.GetTemplate("index.go.html")
 	data := struct {
 	}{}
 
