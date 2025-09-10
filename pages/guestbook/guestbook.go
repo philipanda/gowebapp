@@ -43,7 +43,7 @@ func RegisterGuest(entry GuestbookRecord) {
 	util.CheckErrLog(err)
 }
 func Page(w http.ResponseWriter, r *http.Request) {
-	tpl := util.GetTemplate("guestbook.html")
+	tpl := util.GetTemplate("guestbook.gohtml")
 	records := GetGuestbook()
 
 	data := struct {

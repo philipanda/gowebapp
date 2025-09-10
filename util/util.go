@@ -38,7 +38,7 @@ func GetTemplatePath(filename string) string {
 	return GetStaticFilesPath() + "/templates/" + filename
 }
 func GetTemplate(filename string) *template.Template {
-	return template.Must(template.ParseFiles(GetTemplatePath("base.html"), GetTemplatePath(filename)))
+	return template.Must(template.ParseFiles(GetTemplatePath("base.gohtml"), GetTemplatePath(filename)))
 }
 
 func GetDataPath(filename string) string {

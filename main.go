@@ -4,6 +4,7 @@ import (
 	"GoWebApp/pages/guestbook"
 	"GoWebApp/pages/index"
 	"GoWebApp/pages/liquid_ass"
+	"GoWebApp/pages/secret"
 	"GoWebApp/util"
 	"net/http"
 	"os"
@@ -42,6 +43,10 @@ func main() {
 	http.HandleFunc("/liquid_ass", func(w http.ResponseWriter, r *http.Request) {
 		util.Log("Request for /liquid_ass from " + r.RemoteAddr)
 		liquid_ass.Page(w, r)
+	})
+	http.HandleFunc("/secret", func(w http.ResponseWriter, r *http.Request) {
+		util.Log("Request for /liquid_ass from " + r.RemoteAddr)
+		secret.Page(w, r)
 	})
 
 	util.Log("Endpoints configured")
