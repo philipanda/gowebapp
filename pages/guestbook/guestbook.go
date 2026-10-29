@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"os"
+	"slices"
 	"strings"
 )
 
@@ -34,7 +35,7 @@ func RegisterGuest(entry GuestbookRecord) {
 		util.Log("Guestbook: Access from local network. Not registering.")
 		return
 	}
-	guests = append(guests, entry)
+	guests = slices.Insert(guests, 0, entry)
 	bytes, err := json.Marshal(guests)
 	if util.CheckErrLog(err) {
 		return
